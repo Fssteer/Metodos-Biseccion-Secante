@@ -19,6 +19,7 @@ app = FastAPI(
         "el resultado final y un mensaje explicativo."
     ),
     version="1.0.0",
+    root_path="/api",
 )
 
 app.add_middleware(

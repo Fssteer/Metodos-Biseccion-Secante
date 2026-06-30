@@ -62,7 +62,7 @@ class State(rx.State):
     async def verificar_backend(self):
         try:
             async with httpx.AsyncClient() as client:
-                r = await client.get("http://127.0.0.1:8080/", timeout=2)
+                r = await client.get("https://secante-biseccion.servidor507.site/api/", timeout=2)
             self.backend_activo = r.status_code == 200
         except:
             self.backend_activo = False
@@ -99,7 +99,7 @@ class State(rx.State):
                 "max_iteraciones": int(self.max_iteraciones),
             }
             async with httpx.AsyncClient() as client:
-                r = await client.post("http://127.0.0.1:8080/biseccion", json=payload, timeout=10)
+                r = await client.post("https://secante-biseccion.servidor507.site/api/biseccion", json=payload, timeout=10)
             d = r.json()
             self.filas = [
                 [str(it.get("iteracion","")), str(it.get("a","")), str(it.get("b","")),
@@ -129,7 +129,7 @@ class State(rx.State):
                 "max_iteraciones": int(self.max_sec),
             }
             async with httpx.AsyncClient() as client:
-                r = await client.post("http://127.0.0.1:8080/secante", json=payload, timeout=10)
+                r = await client.post("https://secante-biseccion.servidor507.site/api/secante", json=payload, timeout=10)
             d = r.json()
             self.filas_sec = [
                 [str(it.get("iteracion","")), str(it.get("x_n1","")), str(it.get("x_n","")),
