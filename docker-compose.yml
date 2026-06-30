@@ -1,0 +1,16 @@
+services:
+  metodos-numericos:
+    build: .
+    container_name: metodos-numericos
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    expose:
+      - "3000"   # frontend Reflex — solo visible para Nginx Proxy Manager
+      - "8080"   # backend FastAPI — solo interno
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
